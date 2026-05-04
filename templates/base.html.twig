@@ -11,6 +11,16 @@
             {% block importmap %}{{ importmap('app') }}{% endblock %}
         {% endblock %}
 
+        {% if app.user %}
+        <div class="bg-green-500 text-white p-2 text-center">
+        Connecté en tant que : {{ app.user.email }} | <a href="{{ path('app_logout') }}" class="underline">Déconnexion</a>
+        </div>
+        {% else %}
+        <div class="bg-gray-500 text-white p-2 text-center">
+        Mode invité (Déconnecté)
+        </div>
+        {% endif %}
+
         {% set frankenphpHotReload = app.request.server.get('FRANKENPHP_HOT_RELOAD') %}
         {% if frankenphpHotReload %}
         <meta name="frankenphp-hot-reload:url" content="{{ frankenphpHotReload }}">

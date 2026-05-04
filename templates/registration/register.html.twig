@@ -1,0 +1,139 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+{% endblock %}
+
+{% block body %}
+
+<div class="min-h-screen bg-gray-100 flex items-center justify-center px-4 py-10">
+    <div class="w-full max-w-sm">
+
+        <div class="text-center mb-6">
+            <div class="inline-flex items-center justify-center w-12 h-12 rounded-lg border-2 border-blue-500 text-blue-500 mb-3">
+                <i class="fa-solid fa-file-invoice-dollar text-xl"></i>
+            </div>
+            <h1 class="text-2xl font-bold text-gray-900">Créez votre compte</h1>
+            <p class="mt-1 text-sm text-gray-500">
+                Ou
+                <a href="{{ path('app_login') }}" class="text-blue-500 hover:text-blue-600 font-medium">
+                    connectez-vous à votre compte
+                </a>
+            </p>
+        </div>
+
+        <div class=" rounded-2xl shadow-sm px-8 py-8">
+
+            {{ form_errors(registrationForm) }}
+
+            {{ form_start(registrationForm, {
+                'attr': {'class': 'space-y-4', 'novalidate': 'novalidate'}
+            }) }}
+
+                {# Nom + Siret côte à côte #}
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        {{ form_label(registrationForm.lastName, 'Nom', {
+                            'label_attr': {'class': 'block text-sm text-gray-600 mb-1'}
+                        }) }}
+                        {{ form_widget(registrationForm.lastName, {
+                            'attr': {
+                                'class': 'w-full border border-gray-200 rounded-lg px-3 py-2.5 text-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500',
+                                'placeholder': 'Leclair'
+                            }
+                        }) }}
+                        {{ form_errors(registrationForm.lastName) }}
+                    </div>
+                    <div>
+                        {{ form_label(registrationForm.lastName, 'Prenom', {
+                            'label_attr': {'class': 'block text-sm text-gray-600 mb-1'}
+                        }) }}
+                        {{ form_widget(registrationForm.firstName, {
+                            'attr': {
+                                'class': 'w-full border border-gray-200 rounded-lg px-3 py-2.5 text-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500',
+                                'placeholder': 'Loic'
+                            }
+                        }) }}
+                        {{ form_errors(registrationForm.lastName) }}
+                    </div>
+                <div>
+                    {{ form_label(registrationForm.siret, 'SIRET', {
+                           'label_attr': {'class': 'block text-sm text-gray-600 mb-1'}
+                    }) }}
+                    {{ form_widget(registrationForm.siret, {
+                           'attr': {
+                           'class': 'w-full border border-gray-200 rounded-lg px-3 py-2.5 text-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500',
+                           'placeholder': 'LA RUE, LA VRAI'
+                        }
+                    }) }}
+                    {{ form_errors(registrationForm.siret) }}
+                </div>
+                </div>
+
+                <div>
+                    {{ form_label(registrationForm.companyName, 'Raison Sociale', {
+                        'label_attr': {'class': 'block text-sm text-gray-600 mb-1'}
+                    }) }}
+                    {{ form_widget(registrationForm.companyName, {
+                        'attr': {
+                            'class': 'w-full border border-gray-200 rounded-lg px-3 py-2.5 text-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500',
+                            'placeholder': 'Bedoland'
+                        }
+                    }) }}
+                    {{ form_errors(registrationForm.companyName) }}
+                </div>
+                
+                <div>
+                    {{ form_label(registrationForm.iban, 'IBAN', {
+                        'label_attr': {'class': 'block text-sm text-gray-600 mb-1'}
+                    }) }}
+                    {{ form_widget(registrationForm.iban, {
+                        'attr': {
+                            'class': 'w-full border border-gray-200 rounded-lg px-3 py-2.5 text-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500',
+                            'placeholder': 'PAS DE RIB , QUE DU SHIT'
+                        }
+                    }) }}
+                    {{ form_errors(registrationForm.iban) }}
+                </div>
+
+                <div>
+                    {{ form_label(registrationForm.email, 'Adresse Email', {
+                        'label_attr': {'class': 'block text-sm text-gray-600 mb-1'}
+                    }) }}
+                    {{ form_widget(registrationForm.email, {
+                        'attr': {
+                            'class': 'w-full border border-gray-200 rounded-lg px-3 py-2.5 text-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500',
+                            'placeholder': 'commandetonshit@cannabis.fr'
+                        }
+                    }) }}
+                    {{ form_errors(registrationForm.email) }}
+                </div>
+
+                <div>
+                    {{ form_label(registrationForm.plainPassword, 'Mot de passe', {
+                        'label_attr': {'class': 'block text-sm text-gray-600 mb-1'}
+                    }) }}
+                    {{ form_widget(registrationForm.plainPassword, {
+                        'attr': {
+                            'class': 'w-full border border-gray-200 rounded-lg px-3 py-2.5 text-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500',
+                            'placeholder': 'password'
+                        }
+                    }) }}
+                    {{ form_errors(registrationForm.plainPassword) }}
+                </div>
+
+
+                <button type="submit"
+                    class="w-full bg-blue-700 hover:bg-blue-600 text-white font-semibold py-3 rounded-lg transition-colors duration-200 text-sm">
+                    Créer mon compte
+                </button>
+
+            {{ form_end(registrationForm) }}
+        </div>
+
+    </div>
+</div>
+{% endblock %}
