@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+{% endblock %}
+
+{% block body %}
+<div class="min-h-screen bg-gray-100 flex items-center justify-center px-4 py-10">
+    <div class="w-full max-w-sm">
+
+        <div class="text-center mb-6">
+            <div class="inline-flex items-center justify-center w-12 h-12 rounded-lg border-2 border-blue-500 text-blue-500 mb-3">
+                <i class="fa-solid fa-file-invoice-dollar text-xl"></i>
+            </div>
+            <h1 class="text-2xl font-bold text-gray-900">Connectez-vous</h1>
+            <p class="mt-1 text-sm text-gray-500">
+                Ou
+                <a href="{{ path('app_register') }}" class="text-blue-500 hover:text-blue-600 font-medium">
+                    Créer un compte gratuitement
+                </a>
+            </p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-sm px-8 py-8">
+            <form method="post" class="space-y-4">
+                
+                {% if error %}
+                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+                        {{ error.messageKey|trans(error.messageData, 'security') }}
+                    </div>
+                {% endif %}
+
+                <div>
+                    <label for="inputEmail" class="block text-sm text-gray-600 mb-1">Adresse Email</label>
+                    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" autocomplete="email" required autofocus>
+                </div>
+                
+
+                <div>
+                    <label for="inputPassword" class="block text-sm text-gray-600 mb-1">Mot de passe</label>
+                    <input type="password" name="password" id="inputPassword" class="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" autocomplete="current-password" required>
+                </div>
+
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                <button type="submit" class="w-full bg-blue-700 hover:bg-blue-600 text-white font-semibold py-3 rounded-lg transition-colors duration-200 text-sm">
+                    Se connecter
+                </button>
+
+                
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
