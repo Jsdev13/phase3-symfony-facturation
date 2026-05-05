@@ -37,6 +37,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $last_name = null;
 
+    #[ORM\Column(length: 255)]
     private ?string $firstName = null;
 
     #[ORM\Column(length: 255)]
@@ -47,6 +48,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 255)]
     private ?string $siret = null;
+
+   
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $cgv = null;
+
+
 
     public function getId(): ?int
     {
@@ -182,4 +189,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    public function getcgv(): ?string
+    {
+        return $this->cgv;
+    }
+
+    public function setcgv(string $cgv): static
+    {
+        $this->cgv = $cgv;
+
+        return $this;
+    }
+
 }
