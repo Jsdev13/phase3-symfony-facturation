@@ -33,7 +33,6 @@
                 'attr': {'class': 'space-y-4', 'novalidate': 'novalidate'}
             }) }}
 
-                {# Nom + Siret côte à côte #}
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         {{ form_label(registrationForm.lastName, 'Nom', {
@@ -130,6 +129,7 @@
                     class="w-full bg-blue-700 hover:bg-blue-600 text-white font-semibold py-3 rounded-lg transition-colors duration-200 text-sm">
                     Créer mon compte
                 </button>
+                
 
             {{ form_end(registrationForm) }}
         </div>
