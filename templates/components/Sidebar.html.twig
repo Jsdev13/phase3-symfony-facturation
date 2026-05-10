@@ -3,9 +3,9 @@
 
     <nav class="flex-1 px-4 space-y-1">
         {{ component('SidebarItem', { label: 'Dashboard', icon: '', route: 'app_dashboard' }) }}
-        {{ component('SidebarItem', { label: 'Factures', icon: '', route: '#' }) }}
-        {{ component('SidebarItem', { label: 'Clients', icon: '', route: '#' }) }}
-        {{ component('SidebarItem', { label: 'Produits', icon: '', route: '#' }) }}
+        {{ component('SidebarItem', { label: 'Factures', icon: '', route: 'app_invoice_index' }) }}
+        {{ component('SidebarItem', { label: 'Clients', icon: '', route: 'app_client_index' }) }}
+        {{ component('SidebarItem', { label: 'Produits', icon: '', route: 'produits_index' }) }}
         {{ component('SidebarItem', { label: 'Profil', icon: '', route: 'app_profile' }) }}
 
     </nav>
