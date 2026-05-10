@@ -11,7 +11,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
-#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
+#[UniqueEntity(fields: ['email'], message: 'Il existe déjà un compte avec cet email')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -22,15 +22,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 180)]
     private ?string $email = null;
 
-    /**
-     * @var list<string> The user roles
-     */
     #[ORM\Column]
     private array $roles = [];
 
-    /**
-     * @var string The hashed password
-     */
     #[ORM\Column]
     private ?string $password = null;
 
@@ -49,27 +43,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $siret = null;
 
-   
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $cgv = null;
-
-
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getFirstName(): ?string
-    {
-        return $this->firstName;
-    }
-
-    public function setFirstName(string $firstName): static
-    {
-        $this->firstName = $firstName;
-
-        return $this;
     }
 
     public function getEmail(): ?string
@@ -80,13 +59,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setEmail(string $email): static
     {
         $this->email = $email;
-
         return $this;
     }
 
     /**
-     * A visual identifier that represents this user.
-     *
      * @see UserInterface
      */
     public function getUserIdentifier(): string
@@ -100,19 +76,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getRoles(): array
     {
         $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
         $roles[] = 'ROLE_USER';
-
         return array_unique($roles);
     }
 
-    /**
-     * @param list<string> $roles
-     */
     public function setRoles(array $roles): static
     {
         $this->roles = $roles;
-
         return $this;
     }
 
@@ -127,19 +97,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPassword(string $password): static
     {
         $this->password = $password;
-
         return $this;
     }
 
     /**
-     * Ensure the session doesn't contain actual password hashes by CRC32C-hashing them, as supported since Symfony 7.3.
+     * @see UserInterface
      */
-    public function __serialize(): array
+    public function eraseCredentials(): void
     {
-        $data = (array) $this;
-        $data["\0".self::class."\0password"] = hash('crc32c', $this->password);
+        
+    }
+    
+    public function getFirstName(): ?string
+    {
+        return $this->firstName;
+    }
 
-        return $data;
+    public function setFirstName(string $firstName): static
+    {
+        $this->firstName = $firstName;
+        return $this;
     }
 
     public function getLastName(): ?string
@@ -150,7 +127,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setLastName(string $last_name): static
     {
         $this->last_name = $last_name;
-
         return $this;
     }
 
@@ -162,7 +138,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setCompanyName(string $company_name): static
     {
         $this->company_name = $company_name;
-
         return $this;
     }
 
@@ -174,7 +149,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIban(string $iban): static
     {
         $this->iban = $iban;
-
         return $this;
     }
 
@@ -186,20 +160,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setSiret(string $siret): static
     {
         $this->siret = $siret;
-
         return $this;
     }
 
-    public function getcgv(): ?string
+    public function getCgv(): ?string
     {
         return $this->cgv;
     }
 
-    public function setcgv(string $cgv): static
+    public function setCgv(?string $cgv): static
     {
         $this->cgv = $cgv;
-
         return $this;
     }
-
 }

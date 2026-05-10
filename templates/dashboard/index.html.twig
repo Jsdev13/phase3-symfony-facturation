@@ -3,18 +3,61 @@
 {% block title %}Hello DashboardController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<div class="p-10 bg-gray-100 min-h-screen">
+  <h1 class="text-3xl font-bold text-gray-800 mb-6">Dashboard</h1>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+  <section class="grid grid-cols-4 gap-4 mb-6">
+    <div class="bg-white border border-gray-100 shadow-sm rounded-xl flex flex-col items-start justify-center py-6 px-5 gap-2">
+      <div class="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center">
+        <i class="fa-solid fa-euro-sign text-green-600"></i>
+      </div>
+      <p class="text-sm text-gray-500">Chiffre d'affaire</p>
+      <p class="text-2xl font-bold text-gray-800">0 €</p>
+    </div>
+    <div class="bg-white border border-gray-100 shadow-sm rounded-xl flex flex-col items-start justify-center py-6 px-5 gap-2">
+      <div class="w-10 h-10 rounded-lg bg-orange-100 flex items-center justify-center">
+        <i class="fa-solid fa-file-invoice text-orange-500"></i>
+      </div>
+      <p class="text-sm text-gray-500">Facture en attente de paiement</p>
+      <p class="text-2xl font-bold text-gray-800">0</p>
+    </div>
+    <div class="bg-white border border-gray-100 shadow-sm rounded-xl flex flex-col items-start justify-center py-6 px-5 gap-2">
+      <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center">
+        <i class="fa-solid fa-users text-blue-500"></i>
+      </div>
+      <p class="text-sm text-gray-500">Total Clients</p>
+      <p class="text-2xl font-bold text-gray-800">0</p>
+    </div>
+    <div class="bg-white border border-gray-100 shadow-sm rounded-xl flex flex-col items-start justify-center py-6 px-5 gap-2">
+      <div class="w-10 h-10 rounded-lg bg-purple-100 flex items-center justify-center">
+        <i class="fa-solid fa-box text-purple-500"></i>
+      </div>
+      <p class="text-sm text-gray-500">Total Produits</p>
+      <p class="text-2xl font-bold text-gray-800">0</p>
+    </div>
+  </section>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/home/user/phase3-symfony-facturation/src/Controller/DashboardController.php</code></li>
-        <li>Your template at <code>/home/user/phase3-symfony-facturation/templates/dashboard/index.html.twig</code></li>
-    </ul>
+  <div class="bg-white border border-gray-100 shadow-sm rounded-xl flex items-center justify-center py-20 mb-6 px-5">
+    <p class="text-gray-400">Chiffre d'affaire mensuel</p>
+  </div>
+
+  <section class="grid grid-cols-3 gap-4 mb-4">
+    <div class="bg-white border border-gray-100 shadow-sm rounded-xl flex items-center justify-center py-8 px-5 text-blue-600 font-semibold hover:bg-blue-50 cursor-pointer">
+      Créer une facture
+    </div>
+    <div class="bg-white border border-gray-100 shadow-sm rounded-xl flex items-center justify-center py-8 px-5 text-gray-700 font-semibold hover:bg-gray-50 cursor-pointer">
+      Ajouter un client
+    </div>
+
+    <a href="{{ path('produits_new') }}"
+       class="bg-white border border-gray-100 shadow-sm rounded-xl flex items-center justify-center py-8 px-5 text-gray-700 font-semibold hover:bg-gray-50 cursor-pointer transition-colors">
+      <i class="fa-solid fa-plus mr-2 text-gray-400"></i>
+      Créer un produit service
+    </a>
+  </section>
+
+  <div class="bg-white border border-gray-100 shadow-sm rounded-xl flex items-center justify-center py-8 px-5 text-gray-700 font-semibold hover:bg-gray-50 cursor-pointer transition">
+    Relancer tous les clients
+  </div>
 </div>
 {% endblock %}
